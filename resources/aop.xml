@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd   
+       http://www.springframework.org/schema/aop   
+       http://www.springframework.org/schema/aop/spring-aop.xsd">  
+       
+       <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+       <bean class="com.spring.aop.banking.LoggingAround"></bean>
+       
+       <bean id="account1" class="com.spring.aop.Account">
+       <property name="accno" value="101"></property>
+       <property name="accname" value="sid"></property>
+       <property name="balance" value="10000"></property>
+       
+       </bean>
+       <bean id="account2" class="com.spring.aop.Account">
+       <property name="accno" value="102"></property>
+       <property name="accname" value="sam"></property>
+       <property name="balance" value="20000"></property>
+       
+       </bean>
+       
+       
+       <bean id="sbAccount" class="com.spring.aop.SBAccount">
+       <property name="acc" ref="account1"></property>
+       </bean>
+       <bean id="caAccount" class="com.spring.aop.CAAccount">
+       <property name="account" ref="account2"></property>
+       </bean>
+       <bean id="banking" class="com.spring.aop.service.BankingService" autowire="byName">
+       </bean>
+           
+  </beans>
